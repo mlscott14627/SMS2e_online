@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>
+<TITLE>SMS Errata</TITLE>
+<!-- hijack samp tag for pseudocode -->
+<style>
+samp {
+    font-family: Sans-Serif;
+    font-size: 85%;
+}
+calig {
+    font-family: cursive;
+}
+</style>
+</HEAD>
+<BODY BGCOLOR="white">
+
+<a href="https://link.springer.com/book/10.1007/978-3-031-38684-8"><img
+ALIGN=right ALT="SMS cover" HSPACE=10 VSPACE=5 SRC="images/SMS_2e_cover_small.jpg"></A>
+
+<H1><i><a href="https://link.springer.com/book/10.1007/978-3-031-38684-8">Shared
+Memory Synchronization</a></i><br><small>Errata for the second
+edition</small></H1>
+
+<p>
+This page contains a list of all known errors in the book,
+listed in reverse chronological order of discovery.&nbsp;
+Depending on when you obtained your copy, you may see all, some, or
+none of these bugs.&nbsp;
+If you want to correct your copy, work down the list until one of the
+bugs is missing; at that point you&rsquo;ve fixed them all.&nbsp;
+<p>
+Page numbers are from the PDF and print versions of the book.&nbsp;
+If you&rsquo;re using the epub version you may need to extrapolate.&nbsp;
+<p>
+To report additional bugs, send mail to
+<img alt="Michael Scott's email"
+    align=top src="images/michael_scott_email.gif"> and
+<img alt="Trevor Brown's email"
+    align=top src="images/trevor_brown_email.gif">.&nbsp;
+
+<ul>
+<li>
+Right arrow characters are missing in several figures:
+    <ul>
+    <li>
+    p. 42, Fig. 3.1 should appear as<br>&nbsp;
+    <table>
+    <tr><td colspan=2><samp>thread 1:</samp></td>
+        <td colspan=2><samp>thread 2:</samp></td>
+    <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><samp>// insert(C)</samp></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><samp>// delete(D)</samp></td></tr>
+    <tr><td></td><td><samp>read n&rarr;v&nbsp;&nbsp;&nbsp;&nbsp;// A
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</samp></td>
+        <td></td><td><samp>read n&rarr;v&nbsp;&nbsp;&nbsp;&nbsp;// A</samp></td></tr>
+    <tr><td></td><td><samp>p := n</samp></td><td></td><td><samp>p := n</samp></td></tr>
+    <tr><td></td><td><samp>n := n&rarr;next</samp></td><td></td>
+                 <td><samp>n := n&rarr;next</samp></td><td></td></tr>
+    <tr><td></td><td><samp>read n&rarr;v&nbsp;&nbsp;&nbsp;&nbsp;// D</samp></td>
+        <td></td><td><samp>read n&rarr;v&nbsp;&nbsp;&nbsp;&nbsp;// D</samp></td></tr>
+    <tr><td></td><td><samp>m := new node(C)</samp></td><td></td>
+                 <td><samp>t := n&rarr;next</samp></td></tr>
+    <tr><td></td><td><samp>m&rarr;next := n</samp></td></tr>
+    <tr><td></td><td><samp>p&rarr;next := m</samp></td></tr>
+    <tr><td></td><td></td><td></td><td><samp>p&rarr;next := t</samp></td></tr>
+    </table><br>
+    </li>
+    <li>
+    p. 141, Fig. 8.2: second-to-last line on the left should read
+        &ldquo;<samp>n&rarr;next&rarr;store(o, &vert;&vert;)</samp>&rdquo;;
+        third-to-last line on the right should read
+        &ldquo;<samp>n := o&rarr;next&rarr;load(&vert;&vert;)</samp>&rdquo;.
+    </li>
+    <li>
+    p. 148, Fig. 8.8: 5th line of <samp>queue.enqueue</samp> should read
+        &ldquo;<samp>n := t.p&rarr;next.load()</samp>&rdquo;;
+        8th line of <samp>queue.enqueue</samp> should read
+            &ldquo;<samp>if t.p&rarr;next.CAS(n, &langle;w,
+            n.c+1&rangle;)</samp>&rdquo;;
+        5th line of <samp>queue.dequeue</samp> should read
+            &ldquo;<samp>n := h.p&rarr;next.load()</samp>&rdquo;;
+        13th line of <samp>queue.dequeue</samp> should read
+            &ldquo;<samp>rtn := n.p&rarr;val.load()</samp>&rdquo;.
+    </li>
+    </ul>
+</li>
+<li>
+p. 76, Fig. 4.14:
+    <ul>
+    <li> replace first two lines with the single line &ldquo;<samp>qnode*
+    thread_qnode_ptrs[<calig>T</calig>] := {i &isin; <calig>T</calig>:
+    new qnode(false)}</samp>&rdquo;.&nbsp;
+    </li>
+    <li> first line of declaration of <samp>class lock</samp>
+        should read &ldquo;<samp>atomic<qnode*> tail := new
+        qnode(false)</samp>&rdquo;&nbsp;
+    </li>
+    </ul>
+</li>
+<li>
+p. 179, line 5: replace question mark with &ldquo;<samp><font
+    color="blue">Singh et al. (2021)</font></samp>&rdquo;.&nbsp;
+</li>
+</ul>
+
+<hr>
+<!--
+    <P> Thanks to
+    ...
+    for their help in catching these mistakes.
+-->
+
+</BODY>
+<ADDRESS>Last update:
+29 February 2024
+</ADDRESS>
+</HTML>
